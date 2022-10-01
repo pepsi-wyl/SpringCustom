@@ -50,7 +50,7 @@ public class XmlBeanDefinitionReader implements BeanDefinitionReader {
     }
 
     // 解析配置文件
-    public void parseBean(Element rootElement) {
+    private void parseBean(Element rootElement) {
         // 获取根标签下的所有Bean标签对象
         List<Element> beanElements = rootElement.elements("bean");
 
