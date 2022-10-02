@@ -71,7 +71,7 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
             String propertyValueRef = propertyValue.getRef();
 
             // 处理ref属性
-            if (propertyValueRef != null && "".equals(propertyValueRef)) {
+            if (propertyValueRef != null && !"".equals(propertyValueRef)) {
 
                 // 获取依赖的bean对象
                 Object beanRef = getBean(propertyValueName);
