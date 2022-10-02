@@ -72,23 +72,26 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 
             // 处理ref属性
             if (propertyValueRef != null && "".equals(propertyValueRef)) {
+
                 // 获取依赖的bean对象
                 Object beanRef = getBean(propertyValueName);
                 // 获取拼接方法名称
                 String methodName = StringUtils.getSetterMethodNameByFieldName(propertyValueName);
 
-                // 反射获取方法对象
+                // 反射获取方法对象并且注入
                 Method[] methods = clazz.getMethods();
                 for (Method method : methods) {
-                    if (methodName.equals(method.getName())) {
-                        method.invoke(beanObj, beanRef);
-                    }
+                    if (methodName.equals(method.getName())) method.invoke(beanObj, beanRef);
                 }
             }
 
             // 处理value属性
             if (propertyValueValue != null && !"".equals(propertyValueValue)) {
+
+                // 获取拼接方法名称
                 String methodName = StringUtils.getSetterMethodNameByFieldName(propertyValueName);
+
+                // 反射获取方法对象并且注入
                 Method method = clazz.getMethod(methodName, String.class);
                 method.invoke(beanObj, propertyValueValue);
             }
