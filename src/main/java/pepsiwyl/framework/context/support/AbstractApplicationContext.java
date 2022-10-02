@@ -18,14 +18,14 @@ import java.util.Map;
 
 public abstract class AbstractApplicationContext implements ApplicationContext {
 
+    // 声明配置文件路径的变量
+    protected String configLocation;
+
     // 声明解析器 子类实现
     protected BeanDefinitionReader beanDefinitionReader;
 
     // 定义用于存储bean对象的map容器
     protected Map<String, Object> singletonObjects = new HashMap<>();
-
-    // 声明配置文件路径的变量
-    protected String configLocation;
 
     @Override
     public void refresh() throws IllegalStateException, Exception {
